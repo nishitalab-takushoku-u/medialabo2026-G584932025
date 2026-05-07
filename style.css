@@ -1,8 +1,12 @@
 h1{
-    color:rgb(122, 0, 126);
+    color:rgb(0, 126, 120);
+    text-align: center;
+    text-shadow: rgb(141, 190, 163) 1px 0 10px;
 }
 h2{
-    color:rgb(255, 0, 157)
+    
+	color: #024b08;
+	background:linear-gradient(to right ,white,#85cf5d);
 }
 h3{
     color:rgb(25, 198, 77)
