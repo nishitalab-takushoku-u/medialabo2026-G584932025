@@ -1,3 +1,29 @@
 h1{
     color:brown;
 }
+body{
+     background: #fdf8f0;
+     padding: 2rem 1.5rem;
+}
+h2{
+    font-size: 1.8rem;
+    text-align: center;
+    color: #b34e1a;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #ffb347;
+    letter-spacing: 1px;
+}
+h3{
+    background: #ffffff;
+    border-left: 8px solid #e07c2c;
+    padding:1rem 1.5rem;
+    margin:2rem 0 1rem 0;    
+}
+h3 img{
+    border-radius: 50%;
+}
+p {
+    padding: 0.3rem 1.3rem;
+    margin: 0.4rem 0 0.4rem 1.2rem;
+}
