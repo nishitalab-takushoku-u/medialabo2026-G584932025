@@ -14,36 +14,44 @@ function hantei() {
   // ここから: 予想回数を1増やして，span#kaisu 要素のテキストを更新
   kaisu = kaisu+1;
   let kaisu1 = document.querySelector('span#kaisu');
+  kaisu1.textContent = kaisu;
   // ここまで: 予想回数を1増やして，span#kaisu 要素のテキストを更新
   
   // ここから: テキストボックスに指定された数値を yoso に代入する
   let yoso;
-  let yoso1 = document.querySelector('input[name="kaisu"]');
+  let yoso1 = document.querySelector('input[name = "kaisu"]');
   yoso = Number(yoso1.value);
   // ここまで: テキストボックスに指定された数値を yoso に代入する
   
   // ここから: 正解判定する
   // 　　　　  正解/不正解のときのメッセージを表示する
-
+  let p = document.querySelector('p#result');
   
-    if(yoso===kotae){
-      console.log("正解です．おめでとう!");
+  let keka1 = document.querySelector('span#keka1');
+  keka1.textContent = yoso;
+  
+    if(kaisu >= 4){
+      p.textContent = "答えは " + kotae + "でした。すでにゲームは終わっています"
+    }
+    else if(yoso===kotae){
+      p.textContent = "正解です。おめでとう！";
     }
     else if(kaisu===3){
-      console.log("まちがい．残念でした答えは "+kotae+" です．");
+      p.textContent = "まちがい。残念でした。答えは " + kotae + " です。";
+
     }
-    else if(yoso<kotae){
-      console.log("まちがい．答えはもっと大きいですよ");
-    }
-    else{
-      console.log("まちがい．答えはもっと小さいですよ");
+    else {
+       if (yoso < kotae) {
+          p.textContent = "まちがい。答えはもっと大きいです";
+      } else {
+          p.textContent = "まちがい。答えはもっと小さいです";
+
     }
 
   // ここまで: 正解判定する
+}
 }
 
 // ここから: ボタンを押した時のイベントハンドラとして hantei を登録
 let b = document.querySelector('button#keka')
 b.addEventListener('click',hantei)
-
-// ここまで: ボタンを押した時のイベントハンドラとして hantei を登録
