@@ -18,7 +18,12 @@ console.log("-------------------------------")
 }
 
 // 課題5-1 の関数 printDom() はここに記述すること
-function printDom(){
+function printDom(data){
+
+  let push = document.querySelector('#con');
+  if(push){
+    push.remove();
+  }
 
 let con = document.createElement('div');
 con.setAttribute('id', 'con');
@@ -26,7 +31,7 @@ document.body.insertAdjacentElement('beforeend', con);
 
 let i = 1;
 
-for(let shop of gurumeData.mise.shop){
+for(let shop of data.results.shop){
   let div = document.createElement('div');
   div.setAttribute('class','shop');
   con.insertAdjacentElement('beforeend',div);
@@ -76,7 +81,7 @@ for(let shop of gurumeData.mise.shop){
   }
 }
 let button = document.querySelector('#search');
-button.addEventListener('click', printDom);
+button.addEventListener('click',sendRequest );
 
 
 
@@ -88,13 +93,63 @@ button.addEventListener('click', printDom);
 
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
+  let word = document.querySelector('#word').value;
+  let genre = '';
 
+  if(word == '居酒屋'){
+    genre = 'G001'
+  }else if(word == 'ダイニングバー・バル'){
+    genre == 'G002'
+  }else if(word == '創作料理'){
+    genre = 'G003'
+  }else if(word == '和食'){
+    genre = 'G004'
+  }else if(word == '洋食'){
+    genre = 'G005'
+  }else if(word == 'イタリアン・フレンチ'){
+    genre = 'G006'
+  }else if(word == '中華'){
+    genre = 'G007'
+  }else if(word == '焼肉・ホルモン'){
+    genre = 'G008'
+  }else if(word == 'アジア・エスニック料理'){
+    genre = 'G009'
+  }else if(word == '各国料理'){
+    genre = 'G010'
+  }else if(word == 'カラオケ・パーティ'){
+    genre = 'G011'
+  }else if(word == 'バー・カクテル'){
+    genre = 'G012'
+  }else if(word == 'ラーメン'){
+    genre = 'G013'
+  }else if(word == 'カフェ・スイーツ'){
+    genre = 'G014'
+  }else if(word == 'その他グルメ'){
+    genre = 'G015'
+  }else if(word == 'お好み焼き・もんじゃ'){
+    genre = 'G016'
+  }else if(word == '韓国料理'){
+    genre = 'G017'
+  }
+
+  let url = 'https://www.nishita-lab.org/web-contents/jsons/hotpepper/'+ genre + '.json'
+  axios.get(url)
+    .then(showResult)
+    .catch(showError)
+    .then(finish)
 }
 
 // 課題6-1: 通信が成功した時の処理は以下に記述
 function showResult(resp) {
+  let data = resp.data;
+    if(typeof data === 'string'){
+      data = JSON.parse(data);
+    }
+
+    printDom(data);
 
 }
+
 
 // 課題6-1: 通信エラーが発生した時の処理
 function showError(err) {
@@ -109,7 +164,7 @@ function finish() {
 ////////////////////////////////////////
 
 let gurumeData = {
-  "mise":{
+  "results":{
     "shop":[
         {
         "logo_image":"practice-html/giyutan.png",
